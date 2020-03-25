@@ -1,0 +1,369 @@
+<!--
+Document object model (Relation: JS, HTML)
+1.Properties (console)
+document.body
+document.head
+document.title
+document.all(array: tags)/forms/links -> document.all[1] 
+document.URL/domain/doctype
+innerHTML(xem gia tri hien tai(<==> textContent) va thay doi)
+2.Methods
+document.getElementByClassName('a')(array:)
+document.getElementById()
+
+3.HTML Element
+  .children
+  .textContent = 'Hello 2'
+  .style.fontWeight = 'bold', .backgroundColor = 'yellow'
+  .appendChild()
+  .remove()  $0
+
+4. QUERYSELECTOR-first,(querrySelectorAll)
+document.querySelector('#main-header', 'input', 'input[type="submit"]', '.list-group-item:last-child'...)
+-->
+
+<!-- 
+HTML5 Canvas:   0 ---> x 
+                |
+                v
+                y
+-->
+
+<!-- 
+<style type="text/css">
+<style type="text/javascript">
+<link rel="stylesheet" href="./style.css"/>
+<script src="./dom,js"></script>
+-->
+
+<!-- EVENT 
+var button =document.getElementById('button').addEventListener('click', buttonClick);
+function buttonClick(e) {
+    console.log(e); => object MouseEvent {...}
+    e.target => <button class ="..." id="button">CLick Here</button> 
+    e.tartet.id/className/classList
+    e.type= 'click'
+    document.getElementById('header-title').textContent = 'Changer';
+    document.querySelector('#main').style.backgroundColor ='#f4f4f4';
+    document.getElementById('output').innerHTML = '<h3>' + e.target.id + '</h3>'
+}
+-->
+
+<!-- 
+form.addEventListener('submit', runEvent);
+function runEvent(e) {
+    e.preventDefault()
+}
+-->
+
+<!-- 
+.parentNode, .children(array ->children[1]), lastElementChild, previous(next)ElentSibling
+-->
+
+<!-- 
+//Create a div: var newDiv = document.createElement('div')
+//Add a class(id): newDiv.className(id) = 'hello', 'hello1'
+//Add attr: newDiv.setAttribute('title', 'Hello Div') -> title="Hello Div"
+//Text node: var newDivText = document.createTextNode('Hello world');
+//Add text to div: newDiv.appendChild(newDivText)
+-->
+
+<!-- 
+- window, window.alert(1) <==> alert(1), navigator,appVersion,..
+-->
+
+<!-- 
+CHROME DEVELOPER TOOLS
+- user agent stylesheet: default browser styling
+- before/top, after/bottom, start/left, end/right
+- elenments -> style: color (margin, border, padding, content)
+- inline: span, img, a - do not start on a new line, take only the necessary width
+- block: start on a new line, take full width available
+-->
+
+<!-- 
+WEB API: available(fetchAPI, urlAPI, filesystemAPI, DOM...). Web APIs are typically used with JavaScript, although this doesn't always have to be the case. In DOM(document, customEvent, event(e){e.target, e.currentTarget, method: e.preventDefault}, eventTarget, node ,....)
+
+- add(remove)EventListener:
+function func1 () {                   function func2 () {
+  console.log('function 1');                  console.log('function 2');
+}                                      }
+addEventListener('click', func1);  addEventListener('click', func2);
+
+- Key event là sự kiện khi bạn nhấn vào một key trên bàn phím. Có 3 sự kiện với key là(event.keyCode)
+  + keydown: được gọi khi bạn nhấn xuống một key
+  + keyup: được gọi khi bạn nhả key đó ra
+  + keypress: được gọi khi bạn nhấn và giữ key
+  addEventListener("keydown", function(event) {
+    console.log("keydown", event.keyCode);  (keycode - javascript-char-codes-key-codes, 0 - 48, a - 65)
+   })
+
+ - Mouse Event: là sự kiện khi bạn nhấn hay di chuyển chuột. Một số sự kiện với chuột là:
+ + click: được gọi khi bạn nhấn chuột 1 lần
+ + dblclick: được gọi khi bạn nhấn chuột nhanh 2 lần
+ + mousedown/mouseup Khi click/thả chuột trên element.
+ + mousemove Khi con trỏ chuột di chuyển trên element.
+ + mouseover/mouseout: Con trỏ di vào/ra khỏi element.
+ + mouseenter/mouseleave
+ + onchange, onsubmit
+ + oncontextmenu
+
+- Trên đây là một số cách xử lý Event JavaScript cơ bản. Tôi có thể tóm tắt lại như sau:
+ + addEventListener : đăng ký sự kiện
+ + removeEventListener : huỷ đăng ký sự kiện
+ + preventDefault: bỏ đi hàm xử lý mặc định với sự kiện
+ + Một số sự kiện với key: keydown, keyup, keypress,...
+ + Một số sự kiện với mouse: click, dbclick, mousedown, mouseup, mousemove,...
+
+- Phương thức join() tạo ra một chuỗi mới bằng các nối tất cả các phần tử của mảng (hoặc một array-like object), ngăn cách chúng bởi dấu phẩy hoặc một chuỗi ký tự xác định. Nếu mảng chỉ có một phần tử, kết quả sẽ trả về chính phần tử đó.
+EX: const elements = ['Fire', 'Air', 'Water'];
+console.log(elements.join());                    console.log(elements.join(''));
+// expected output: "Fire,Air,Water"             // expected output: "FireAirWater"
+
+- textObject.value: return the value property:
+- Set the value property: textObject.value = text
+
+- Tag <button> name	  name	                     Specifies a name for the button
+               type	  button/reset/submit	       Specifies the type of button
+               value	text	                     Specifies an initial value for the button
+
+- Tag <form>
+ <form action="/action_page.php" method="get">
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname"><br><br>
+  <label for="lname">Last name:</label>
+  <input type="text" id="lname" name="lname"><br><br>
+  <input type="submit" value="Submit">
+</form>
+     get  Default. Appends the form-data to the URL in name/value pairs: /action_page.php?fname=value&lname=value
+     post Sends the form-data as an HTTP post transaction: /action_page.php
+     
+
+- Tag <input>
+  Type: text, password, submit, reset, radio, checkbox, button 
+
+- Tag <select>  
+    <select id="cars">
+      <option value="volvo">Volvo</option>
+      <option value="saab">Saab</option>
+      <option value="audi" selected>Audi</option>
+    </select>
+
+- Tag <a>
+<a href="https://www.w3schools.com/" target="_blank" title="Go to W3Schools HTML section">Visit W3Schools!</a>
+ The target attribute can have one of the following values:
+  + _blank - Opens the linked document in a new window or tab
+  + _self - Opens the linked document in the same window/tab as it was clicked (this is default)
+  + _parent - Opens the linked document in the parent frame
+  + _top - Opens the linked document in the full body of the window
+
+- Tag <img><img src="smiley.gif" alt="Smiley face" height="42" width="42">
+
+- Tag <list>
+ + Unordered HTML List     The CSS list-style-type property is used to define the style of the list item marker:
+    <ul>                             Value	     Description
+       <li>Coffee</li>               disc	      Sets the list item marker to a bullet (default)
+       <li>Tea</li>                  circle	    Sets the list item marker to a circle
+       <li>Milk</li>                 square     Sets the list item marker to a square
+   </ul>                             none	      The list items will not be marked
+
+ + Ordered HTML List       The type attribute of the <ol> tag, defines the type of the list item marker:
+    <ol>                            Type	      Description
+       <li>Coffee</li> t            "1"	        The list items will be numbered with numbers (default)
+       <li>Tea</li>                 "A"/"a"	    The list items will be numbered with uppercase/lowercase letters
+       <li>Milk</li>                "I"/"i"    	The list items will be numbered with uppercase/lowercase roman numbers
+    </ol>
+
+- Tag <table>
+   <table>
+  <tr>                            <tr>                               
+      <th>Firstname</th>              <td>Jill</td>
+      <th>Lastname</th>               <td>Smith</td>
+      <th>Age</th>                    <td>50</td>
+  </tr>                           </tr>
+  <tr>                            <tr>
+      <td>Eve</td>                    <td>John</td>
+      <td>Jackson</td>                <td>Doe</td>
+      <td>94</td>                     <td>80</td>
+  </tr>                           </tr>
+</table>
+ -->
+
+
+ <!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document object</title>
+</head>
+
+ innerHTML(thay cho textContent) thay đổi nội dung, có thể chèn thêm html element khác vào dưới dạng text.$0.innerHTML -> <h1>123</h1>
+$0.innerHTML ='Hello, <a href="/" />'
+     <body>
+    <ul id="todo-list">
+         <li>Take shower</li>
+        <li>Have a walk</li>
+        <li>Go to bed</li> 
+    </ul>
+
+    <script type="text/javascript">
+        var todoList = [
+            'Take shower',
+            'Have a walk',
+            'Go to bed'
+        ];
+        var htmlList = document.getElementById('todo-list');
+        var content = todoList.map(function (item) {
+            return '<li>' + item + '</li>';
+        });
+        htmlList.innerHTML = content.join('');
+
+    </script>
+</body>
+
+
+ onclick: gan vao 1 element thi click vao no, thuc hien 1 function nao do
+     addEventListener: trong thuc te ko goi onclick bang ham-->
+
+<!-- <body>
+    <input id="new-item" type="text" />
+    <button onclick="addItem()">Add</button>
+    <ul id="todo-list">
+    </ul>
+
+    <script type="text/javascript">
+        var todoList = [
+            'Take shower',
+            'Have a walk',
+            'Go to bed'
+        ];
+
+        function addItem() {
+            //get value of the input
+            var newItem = document.getElementById('new-item').value;
+            //add to todoList array
+            todoList.push(newItem);
+            //re-render
+            render();
+            //clear input
+            document.getElementById('new-item').value = '';
+        }
+
+        function render() {
+            var htmlList = document.getElementById('todo-list');
+            var content = todoList.map(function (item) {
+                return '<li>' + item + '</li>';
+            });
+            htmlList.innerHTML = content.join('');
+        }
+
+        render();
+
+
+    </script>
+</body> 
+
+<body>
+    <input id="new-item" type="text" />
+    <button id="add-btn">Add</button>
+    <ul id="todo-list">
+    </ul>
+
+    <script type="text/javascript">
+        var todoList = [
+            'Take shower',
+            'Have a walk',
+            'Go to bed'
+        ];
+
+        var addBtn = document.getElementById("add-btn");
+        //  addBtn.onclick = addItem; chi 1 event cho 1 sk
+        addBtn.addEventListener('click', addItem); // nhieu event cho 1 sk
+        //trigger an event
+        //event listener
+        addBtn.addEventListener('click', function () {
+            console.log('Add button is clicked');
+        })
+
+        function addItem() {
+            //get value of the input
+            var newItem = document.getElementById('new-item').value;
+            //add to todoList array
+            todoList.push(newItem);
+            //re-render
+            render();
+            //clear input
+            document.getElementById('new-item').value = '';
+        }
+
+        function render() {
+            var htmlList = document.getElementById('todo-list');
+            var content = todoList.map(function (item) {
+                return '<li>' + item + '</li>';
+            });
+            htmlList.innerHTML = content.join('');
+        }
+
+        render();
+
+
+    </script>
+</body>
+
+</html> -->
+
+<!-- CHANGE EVENT
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <span>Age:</span>
+    <select id="age-filter">
+        <option>20</option>
+        <option>19</option>
+        <option>18</option>
+    </select>
+    <table id="student-table">
+    </table>
+    <script type="text/javascript">
+      var students = [
+          {name :'Minh', age: 20},
+          {name :'Hoang', age: 20},
+          {name :'Hai', age: 18},
+          {name :'Duy', age: 18},
+          {name :'Tung', age: 19}
+      ];
+
+      var ageFilter = document.getElementById('age-filter');
+      ageFilter.addEventListener('change', onAgeFilterChange);
+
+      function onAgeFilterChange() {
+          //get current value of the select
+           var selectedAge = parseIn(ageFilter.value);
+          //filter the student list bby the selected value
+           var filteredStudents = students.filter(function(student) {
+               return student.age === selectedAge;
+           });
+          render(filteredStudents);
+      }
+
+      function render(students) {
+        var studentTable = document.getElementById('student-table');
+        var content = students.map(function(student) {
+            return '<tr><td>' + student.name + '</td><td>' + student.age + '</td></tr>';
+        });
+
+        studentTable.innerHTML = content.join('');
+      }
+
+      render(students);
+    
+
+    </script>
+</body>
+</html> -->
